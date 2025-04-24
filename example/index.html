@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Chat Widget Example</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    h1 {
+      color: #4f46e5;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      margin-top: 40px;
+      color: #4338ca;
+    }
+    
+    pre {
+      background-color: #f5f7fb;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    
+    code {
+      background-color: #f5f7fb;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .feature-icon {
+      background-color: #e0e7ff;
+      color: #4f46e5;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .feature-content {
+      flex: 1;
+    }
+    
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: #4f46e5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border: none;
+      margin-right: 10px;
+    }
+    
+    .btn:hover {
+      background-color: #4338ca;
+    }
+  </style>
+</head>
+<body>
+  <h1>SaaS Chat Widget Example</h1>
+  
+  <div class="card">
+    <h2>About SaaS Chat</h2>
+    <p>
+      SaaS Chat is a powerful, customizable chat solution that can be easily integrated into any website or application.
+      Our widget provides real-time communication capabilities with minimal setup.
+    </p>
+    
+    <div class="feature">
+      <div class="feature-icon">✨</div>
+      <div class="feature-content">
+        <div class="feature-title">Easy Integration</div>
+        <p>Add our chat widget to your website with just a single line of code.</p>
+      </div>
+    </div>
+    
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <div class="feature-content">
+        <div class="feature-title">Secure Communication</div>
+        <p>All messages are encrypted and securely stored.</p>
+      </div>
+    </div>
+    
+    <div class="feature">
+      <div class="feature-icon">🎨</div>
+      <div class="feature-content">
+        <div class="feature-title">Customizable</div>
+        <p>Easily customize the appearance and behavior of the widget to match your brand.</p>
+      </div>
+    </div>
+    
+    <div class="feature">
+      <div class="feature-icon">📱</div>
+      <div class="feature-content">
+        <div class="feature-title">Responsive Design</div>
+        <p>Works perfectly on all devices, from desktops to mobile phones.</p>
+      </div>
+    </div>
+  </div>
+  
+  <h2>Widget Controls</h2>
+  <p>
+    You can control the widget programmatically using the buttons below:
+  </p>
+  
+  <button id="open-chat" class="btn">Open Chat</button>
+  <button id="close-chat" class="btn">Close Chat</button>
+  <button id="destroy-chat" class="btn">Destroy Widget</button>
+  <button id="create-chat" class="btn">Create New Widget</button>
+  
+  <h2>Integration Code</h2>
+  <pre><code>&lt;script src="../dist/index.umd.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  const chatWidget = new SaaSChatWidget({
+    apiKey: 'YOUR_API_KEY',
+    organization: 'your-organization',
+    apiUrl: 'http://localhost:5030',
+    socketUrl: 'http://localhost:5030',
+    debug: true
+  });
+&lt;/script&gt;</code></pre>
+  
+  <!-- SaaS Chat Widget -->
+  <script src="../dist/index.umd.js"></script>
+  <script>
+    // Initialize the widget
+    let chatWidget = new SaaSChatWidget({
+      apiKey: 'sk_test_123456789',
+      organization: 'demo-org',
+      apiUrl: 'http://localhost:5030',
+      socketUrl: 'http://localhost:5030',
+      primaryColor: '#4f46e5',
+      headerText: 'Example Chat',
+      welcomeMessage: '👋 Hello! This is an example of the SaaS Chat widget. Feel free to try it out!',
+      debug: true
+    });
+    
+    // Button event listeners
+    document.getElementById('open-chat').addEventListener('click', () => {
+      chatWidget.open();
+    });
+    
+    document.getElementById('close-chat').addEventListener('click', () => {
+      chatWidget.close();
+    });
+    
+    document.getElementById('destroy-chat').addEventListener('click', () => {
+      chatWidget.destroy();
+      chatWidget = null;
+    });
+    
+    document.getElementById('create-chat').addEventListener('click', () => {
+      if (!chatWidget) {
+        chatWidget = new SaaSChatWidget({
+          apiKey: 'sk_test_123456789',
+          organization: 'demo-org',
+          apiUrl: 'http://localhost:5030',
+          socketUrl: 'http://localhost:5030',
+          primaryColor: '#4f46e5',
+          headerText: 'Example Chat',
+          welcomeMessage: '👋 Hello! This is a new instance of the SaaS Chat widget.',
+          debug: true
+        });
+      }
+    });
+  </script>
+</body>
+</html>
